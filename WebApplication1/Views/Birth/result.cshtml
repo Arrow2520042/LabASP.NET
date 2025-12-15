@@ -1,0 +1,21 @@
+﻿@model WebApplication1.Models.Birth
+
+@{
+    ViewData["Title"] = "Wynik";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Cześć, @Model.Name!</h1>
+    
+    <p class="lead">
+        Urodziłeś się: <strong>@Model.BirthDate.ToString("dd.MM.yyyy")</strong>
+    </p>
+
+    <div class="alert alert-info d-inline-block">
+        Masz <strong>@Model.CalculateAge()</strong> lat(a).
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Oblicz dla innej osoby</a>
+    </div>
+</div>
