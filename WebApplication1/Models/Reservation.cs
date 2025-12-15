@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation; 
 
 namespace WebApplication1.Models
 {
     public class Reservation : IValidatableObject
     {
+        public int Id { get; set; }
+
         [Display(Name = "Miasto")]
         [Required(ErrorMessage = "Proszę podać miasto.")]
         public string City { get; set; }
