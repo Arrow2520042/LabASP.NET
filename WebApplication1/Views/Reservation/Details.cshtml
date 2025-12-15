@@ -1,0 +1,34 @@
+﻿@model WebApplication1.Models.Reservation
+
+@{ ViewData["Title"] = "Szczegóły"; }
+
+<h1>Szczegóły rezerwacji</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+
+        <dt class="col-sm-3">Miasto</dt>
+        <dd class="col-sm-9">@Model.City</dd>
+
+        <dt class="col-sm-3">Adres</dt>
+        <dd class="col-sm-9">@Model.Address</dd>
+
+        <dt class="col-sm-3">Pokój</dt>
+        <dd class="col-sm-9">@Model.RoomName</dd>
+        
+        <dt class="col-sm-3">Właściciel</dt>
+        <dd class="col-sm-9">@Model.Owner</dd>
+
+        <dt class="col-sm-3">Cena</dt>
+        <dd class="col-sm-9">@Model.Price?.ToString("C")</dd>
+
+        <dt class="col-sm-3">Data</dt>
+        <dd class="col-sm-9">@Model.Date?.ToShortDateString()</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edytuj</a> |
+    <a asp-action="Index" class="btn btn-secondary">Powrót do listy</a>
+</div>

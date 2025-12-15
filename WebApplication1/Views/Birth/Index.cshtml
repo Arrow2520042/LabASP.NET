@@ -1,0 +1,35 @@
+﻿@model WebApplication1.Models.Birth
+
+@{
+    ViewData["Title"] = "Formularz urodzinowy";
+}
+
+<h1>Kalkulator wieku</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Birth" asp-action="Welcome" method="post">
+            
+            <div class="form-group mb-3">
+                <label class="control-label">Podaj imię:</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Data urodzenia:</label>
+                <input asp-for="BirthDate" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Oblicz wiek" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
