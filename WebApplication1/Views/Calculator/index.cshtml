@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Kalkulator - Laboratorium 1";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Kalkulator</h1>
+    <p>Wprowadź liczby i wybierz operację.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-controller="Calculator" asp-action="Index" method="get" class="border p-4 rounded bg-light">
+            <div class="mb-3">
+                <label for="a" class="form-label">Liczba A:</label>
+                <input type="number" step="any" name="a" class="form-control" required />
+            </div>
+            
+            <div class="mb-3">
+                <label for="b" class="form-label">Liczba B:</label>
+                <input type="number" step="any" name="b" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="operation" class="form-label">Operacja:</label>
+                <select name="operation" class="form-select">
+                    <option value="add">Dodawanie (+)</option>
+                    <option value="sub">Odejmowanie (-)</option>
+                    <option value="mul">Mnożenie (*)</option>
+                    <option value="div">Dzielenie (/)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Oblicz</button>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info text-center mt-4">
+        <h3>Wynik:</h3>
+        <p class="fs-4">@ViewBag.Message</p>
+    </div>
+}
