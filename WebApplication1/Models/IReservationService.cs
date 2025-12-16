@@ -9,5 +9,7 @@ namespace WebApplication1.Models
         void Update(Reservation item);
         List<Reservation> FindAll();
         Reservation? FindById(int id);
+        List<Reservation> FindPage(int pageNumber, int pageSize);
+        int Count();
     }
 }

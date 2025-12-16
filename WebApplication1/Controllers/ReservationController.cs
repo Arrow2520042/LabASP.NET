@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -12,11 +13,23 @@ namespace WebApplication1.Controllers
             _service = service;
         }
         
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var list = _service.FindAll();
+            int pageSize = 10;
+            int totalReservations = _service.Count();
+            int totalPages = (int)Math.Ceiling((double)totalReservations / pageSize);
+
+            if (page < 1) page = 1;
+            if (totalPages > 0 && page > totalPages) page = totalPages;
+
+            var list = _service.FindPage(page, pageSize);
+            
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
             return View(list);
         }
+
         public IActionResult Create()
         {
             return View();
@@ -50,12 +63,14 @@ namespace WebApplication1.Controllers
             }
             return View(model);
         }
+
         public IActionResult Details(int id)
         {
             var model = _service.FindById(id);
             if (model == null) return NotFound();
             return View(model);
         }
+
         public IActionResult Delete(int id)
         {
             var model = _service.FindById(id);

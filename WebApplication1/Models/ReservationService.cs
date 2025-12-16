@@ -44,6 +44,20 @@ namespace WebApplication1.Models
             return _reservations.Values.ToList();
         }
 
+        public List<Reservation> FindPage(int pageNumber, int pageSize)
+        {
+            return _reservations.Values
+                .OrderBy(r => r.Date)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public int Count()
+        {
+            return _reservations.Count;
+        }
+
         public Reservation? FindById(int id)
         {
             return _reservations.ContainsKey(id) ? _reservations[id] : null;
